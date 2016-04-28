@@ -7,48 +7,35 @@ package rounded;
 import base.Point;
 import base.Shapes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by V3790149 on 4/26/2016.
  */
-public abstract class RoundedShapes implements Shapes {
-    Point[] points;
-    int color;
+public abstract class RoundedShapes extends Shapes {
     float radius;
     Point origin;
-    public RoundedShapes(Point p, float radius){
+
+    public RoundedShapes(Point p, float radius) {
         this.radius = radius;
-        origin = new Point(p.getX(),p.getY());
+        origin = new Point(p.getX(), p.getY());
     }
 
-    public RoundedShapes(Point[] p){
+    public RoundedShapes(Point[] p) {
         points = p;
     }
+
     public Boolean testPoints(Point[] points) {
-        for(int i = 0; i< points.length;i++)
-            for(int j = 0; j< points.length ; j++)
-                if(points[i].getX() == points[j].getX() && points[i].getY() == points[j].getY())
+        for (int i = 0; i < points.length; i++)
+            for (int j = 0; j < points.length; j++)
+                if (points[i].getX() == points[j].getX() && points[i].getY() == points[j].getY())
                     return false;
         return true;
     }
 
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public Point[] getPoints() {
-        return points;
-    }
-
-    public void deseneaza() {
-
-    }
-
-    public float getRadius(){
+    public float getRadius() {
         return radius;
     }
-    public void show() {
-        for (int i = 0; i < points.length; i++) {
-            System.out.println("Punctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
-        }
-    }
+
 }

@@ -111,7 +111,7 @@ public class Test1 {
     }
 
     //this method tests a circle
-    @Test(expected = ArrayIndexOutOfBoundsException.class )
+  /*  @Test(expected = ArrayIndexOutOfBoundsException.class )
     public void testCircle() {
         Point origin = new Point(1, 1);
 
@@ -127,7 +127,7 @@ public class Test1 {
             Assert.assertTrue(p[i].getX() <= cer.getRadius() + origin.getX());
             Assert.assertTrue(p[i].getY() <= cer.getRadius() + origin.getY());
         }
-    }
+    }*/
     @Test
     public void testCircle1() {
         try {

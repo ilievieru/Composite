@@ -7,6 +7,7 @@ Also I have a test points method, override for this specific polygon, witch chec
 * */
 package poligons;
 import base.Point;
+import base.Shapes;
 
 /**
  * Created by V3790149 on 4/26/2016.
@@ -43,6 +44,7 @@ public class Quarter extends Poligon {
             return false;
         return true;
     }
+
     public Quarter setSize(float size){
         if(size>0){
             this.length = size;
@@ -52,4 +54,5 @@ public class Quarter extends Poligon {
         Quarter q = new Quarter(size,start);
         return  q;
     }
+
 }
