@@ -6,6 +6,7 @@ Also I have a test points method, override for this specific polygon, witch chec
 </summary>
 * */
 package poligons;
+import Exceptions.WrongPointsExceptions;
 import base.Point;
 import base.Shapes;
 
@@ -16,6 +17,7 @@ public class Quarter extends Poligon {
 
     public Quarter(float length, Point start) {
         super(start);
+        this.name = "Square";
         this.length = length;
         this.width = length;
         points = new Point[4];
@@ -28,8 +30,9 @@ public class Quarter extends Poligon {
 
     public Quarter(Point[] p) {
         super(p);
+        this.name = "Square";
         if (!testPoints(points))
-            System.out.println("Fail: Wrong points");
+            throw new WrongPointsExceptions("Fail");
     }
 
     @Override
@@ -53,6 +56,16 @@ public class Quarter extends Poligon {
             System.out.println("Wrong size! ");
         Quarter q = new Quarter(size,start);
         return  q;
+    }
+    @Override
+    public String draw() {
+        String rezultat = "Square:";
+        System.out.println("Square:");
+        for (int i = 0; i < points.length; i++) {
+            System.out.println("Punctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
+            rezultat = rezultat + "\nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
+        }
+        return rezultat;
     }
 
 }

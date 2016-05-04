@@ -20,22 +20,17 @@ public class TestComposite {
         Shapes circle = new Circle(start,6);
         Shapes elipse = new Ellipse(start,3,2);
 
-        //System.out.println("normal");
-        //triangle.draw();
-        //recrangle.draw();
-       square.draw();
-
-        String expected = triangle.draw() + triangle.draw() + circle.draw() + elipse.draw()+ recrangle.draw() + square.draw() ;
+        String expected = triangle.draw()+ triangle.draw() + circle.draw() + elipse.draw()+ recrangle.draw() + square.draw() ;
 
         recrangle.addShape(triangle);
         recrangle.addShape(circle);
         recrangle.addShape(elipse);
         square.addShape(triangle);
         square.addShape(recrangle);
-        System.out.println("composite");
-        square.draw();
 
-        String actual = square.draw();
+        square.draw();
+        System.out.println("composite");
+        String actual = square.drawSubShapes();
         Assert.assertEquals(expected,actual);
 
     }

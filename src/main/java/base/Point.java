@@ -5,9 +5,6 @@
 * </summary>
 * */
 package base;
-
-import java.awt.*;
-
 public class Point {
     float px = 0, py = 0;
 
@@ -29,9 +26,5 @@ public class Point {
 
     public float getY() {
         return py;
-    }
-
-    public void deseneaza(Graphics2D g) {
-        g.drawOval((int) px, (int) py, 1, 1);
     }
 }

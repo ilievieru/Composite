@@ -13,17 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Poligon extends Shapes {
-    int color;
     float length;
     float width;
 
     public Poligon(Point p) {
         start = new Point(p.getX(), p.getY());
+        this.name = "Poligon";
+
     }
 
     public Poligon(Point[] p) {
         points = p;
         start = points[0];
+        this.name = "Poligon";
     }
 
     //This is a method to test the points that my poligon has. More precisely it test the existence of two identical points
@@ -53,8 +55,4 @@ public abstract class Poligon extends Shapes {
     public void setWidth(float width) {
         this.width = width;
     }
-
-
-
-
 }

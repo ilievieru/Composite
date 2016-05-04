@@ -4,6 +4,7 @@ The test method for points is the standard one defined in RoundedShapes abstract
 * */
 package rounded;
 
+import Exceptions.WrongPointsExceptions;
 import base.Point;
 
 import static java.lang.Math.cos;
@@ -16,6 +17,7 @@ public class Circle extends RoundedShapes {
 
     public Circle(Point origin, float radius){
         super(origin,radius);
+        this.name = "Circle";
         points = new Point[38];
         points[0] = new Point(origin.getX(),origin.getY());
         int index = 1;
@@ -28,8 +30,9 @@ public class Circle extends RoundedShapes {
     }
     public Circle(Point[] p){
         super(p);
+        this.name = "Circle";
         if (!testPoints(points))
-            System.out.println("Fail: Wrong points");
+            throw new WrongPointsExceptions("Fail");
     }
     public Circle setSize(float length){
         if(length>0 ){
@@ -38,5 +41,15 @@ public class Circle extends RoundedShapes {
             System.out.println("Wrong size! ");
         Circle r = new Circle(origin,length);
         return r;
+    }
+    @Override
+    public String draw() {
+        String rezultat = "Circle:";
+        System.out.println("Circle:");
+        for (int i = 0; i < points.length; i++) {
+            System.out.println(" Punctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
+            rezultat = rezultat + "\nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
+        }
+        return rezultat;
     }
 }

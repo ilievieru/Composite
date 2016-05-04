@@ -5,6 +5,7 @@ More precise this method checks if the length si different from width.
 </summary>
 */
 package poligons;
+import Exceptions.WrongPointsExceptions;
 import base.Point;
 
 /**
@@ -16,6 +17,7 @@ public class Rectangle extends Poligon {
     //length is Horizontal length and  width is vertical length
     public Rectangle(float length, float width, Point start) {
         super(start);
+        this.name = "Rectangle";
         this.length = length;
         this.width = width;
         points = new Point[4];
@@ -27,8 +29,9 @@ public class Rectangle extends Poligon {
 
     public Rectangle(Point[] p) {
         super(p);
+        this.name = "Rectangle";
         if (!testPoints(points))
-            System.out.println("Fail: Wrong points");
+            throw new WrongPointsExceptions("Fail");
     }
 
     @Override
@@ -48,5 +51,15 @@ public class Rectangle extends Poligon {
             System.out.println("Wrong size! ");
         Rectangle r = new Rectangle(length,width,start);
         return r;
+    }
+    @Override
+    public String draw() {
+        String rezultat = "Rectangle:";
+        System.out.println("Rectangle:");
+        for (int i = 0; i < points.length; i++) {
+            System.out.println(" Punctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
+            rezultat = rezultat + " \nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
+        }
+        return rezultat;
     }
 }

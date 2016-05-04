@@ -4,6 +4,7 @@ This class is a concrete implementation of polygons. This class creates any type
  and one that creates a polygon from an array of points
 </summary>*/
 package poligons;
+import Exceptions.WrongPointsExceptions;
 import base.Point;
 import java.util.Random;
 
@@ -37,7 +38,8 @@ public class ConcretPoligon extends Poligon {
     public ConcretPoligon(Point[] p){
         super(p);
         if (!testPoints(points))
-            System.out.println("Fail: Wrong points");
+            throw new WrongPointsExceptions("Fail");
+            //
     }
 
     public ConcretPoligon setSize(float size){
@@ -58,5 +60,16 @@ public class ConcretPoligon extends Poligon {
         }
         ConcretPoligon c = new ConcretPoligon(points);
         return  c;
+    }
+    @Override
+    public String draw() {
+        String rezultat = "\n" +
+                " Nameless Poligon:";
+        System.out.println("Nameless Poligon: ");
+        for (int i = 0; i < points.length; i++) {
+            System.out.println("Punctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
+            rezultat = rezultat + "\nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
+        }
+        return rezultat;
     }
 }

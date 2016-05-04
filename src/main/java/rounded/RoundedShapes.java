@@ -38,4 +38,15 @@ public abstract class RoundedShapes extends Shapes {
         return radius;
     }
 
+    @Override
+    public String draw() {
+        String rezultat = "";
+        System.out.println("");
+        for (int i = 0; i < points.length; i++) {
+            System.out.println("Punctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
+            //Desenez o forma rotunda
+            rezultat = rezultat + "\nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
+        }
+        return rezultat;
+    }
 }

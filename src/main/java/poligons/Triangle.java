@@ -5,6 +5,8 @@ It test the existence of identical points and if all the point are on the same l
 * </summary>*/
 package poligons;
 
+import Exceptions.WrongPointsExceptions;
+import Exceptions.WrongSizeExceptions;
 import base.Point;
 
 /**
@@ -14,6 +16,7 @@ public class Triangle extends Poligon {
 
     public Triangle(float length, Point start) {
         super(start);
+        this.name = "Triangle";
         points = new Point[3];
         points[0] = new Point(start.getX(), start.getY());
         points[1] = new Point(start.getX() - length, start.getY() - length);
@@ -22,8 +25,9 @@ public class Triangle extends Poligon {
 
     public Triangle(Point[] p) {
         super(p);
+        this.name = "Triangle";
         if (!testPoints(points)) {
-            System.out.println("Fail: Wrong points");
+            throw new WrongPointsExceptions("Fail");
         }
     }
 
@@ -39,14 +43,24 @@ public class Triangle extends Poligon {
             return false;
         return true;
     }
-
     public Triangle setSize(float length){
-        if(length>0 && width>0){
+        if(length>0){
             this.length = length;
             this.width = length;
         }else
-            System.out.println("Wrong size! ");
+            throw new WrongSizeExceptions("Fail");
         Triangle r = new Triangle(length,start);
         return r;
+    }
+
+    @Override
+    public String draw() {
+        String rezultat = "Triangle:";
+        System.out.println("Triangle:");
+        for (int i = 0; i < points.length; i++) {
+            System.out.println(" Punctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
+            rezultat = rezultat + " \nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
+        }
+        return rezultat;
     }
 }

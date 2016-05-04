@@ -4,32 +4,31 @@
         a draw method and a show one to display the points
 //</summary>*/
 package base;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Shapes {
+public abstract class Shapes implements Shape{
     List<Shapes> shapeList = new ArrayList<Shapes>();
-    public Point[] points = null;
-    int color = 0;
+    public String name = "shape";
     public Point start;//This is the start point witch all the shapes have. It is the poit from where i start drawing
-
+    public  Point[] points = null;
     public Point[] getPoints() {
         return points;
     }
 
     ;
 
-    public String draw() {
+    public String drawSubShapes() {
         String rezultat = "";
         if (shapeList.isEmpty())
-            rezultat = rezultat + this.show();
+            rezultat = rezultat + this.draw();
         else {
+            System.out.println("SubShape of "+this.getName());
             for (Shapes s : shapeList) {
-                rezultat = rezultat + s.draw();
+                System.out.println("The SubShape is " + s.getName());
+                rezultat = rezultat  +  s.drawSubShapes();
             }
-            rezultat = rezultat + this.show();
+            rezultat = rezultat + this.draw();
         }
         return rezultat;
     }
@@ -38,7 +37,7 @@ public abstract class Shapes {
         return shapeList;
     }
 
-    public String show() {
+    public String draw() {
         String rezultat = "";
         System.out.println("");
         for (int i = 0; i < points.length; i++) {
@@ -52,9 +51,6 @@ public abstract class Shapes {
         return start;
     }
 
-    public void setColor(int color) {
-        this.color = color;
-    }
 
     public void addShape(Shapes shape) {
         shapeList.add(shape);
@@ -62,6 +58,10 @@ public abstract class Shapes {
 
     public void removeShape(Shapes shape) {
         shapeList.remove(shape);
+    }
+
+    public String getName(){
+        return name;
     }
 
 }

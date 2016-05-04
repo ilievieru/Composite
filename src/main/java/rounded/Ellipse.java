@@ -3,6 +3,7 @@ Also it has two constructors, one for a standard Ellipse and one for a Ellipse c
 The test method for points is the standard one defined in RoundedShapes abstract class
 * */
 package rounded;
+import Exceptions.WrongPointsExceptions;
 import base.Point;
 
 import static java.lang.Math.cos;
@@ -15,6 +16,7 @@ public class Ellipse extends RoundedShapes {
 
     public Ellipse(Point origin, float radius, float radius1){
         super(origin,radius);
+        this.name = "Ellipse";
         points = new Point[38];
         points[0] = new Point(origin.getX(),origin.getY());
         int index = 1;
@@ -28,8 +30,9 @@ public class Ellipse extends RoundedShapes {
 
     public Ellipse(Point[] p){
         super(p);
+        this.name = "Ellipse";
         if (!testPoints(points))
-            System.out.println("Fail: Wrong points");
+            throw new WrongPointsExceptions("Fail");
     }
     public Ellipse setSize(float radius1,float radius2){
         if(radius1>0 && radius2>0 ){
@@ -38,5 +41,15 @@ public class Ellipse extends RoundedShapes {
             System.out.println("Wrong size! ");
         Ellipse r = new Ellipse(origin,radius1,radius2);
         return r;
+    }
+    @Override
+    public String draw() {
+        String rezultat = "Ellipse:";
+        System.out.println("Ellipse:");
+        for (int i = 0; i < points.length; i++) {
+            System.out.println(" Punctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
+            rezultat = rezultat + " \nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
+        }
+        return rezultat;
     }
 }

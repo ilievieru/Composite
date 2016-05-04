@@ -1,5 +1,6 @@
 package rounded;
 
+import Exceptions.WrongPointsExceptions;
 import base.Point;
 import poligons.ConcretPoligon;
 
@@ -26,7 +27,7 @@ public class ConcretRoundedShapes extends RoundedShapes {
     public ConcretRoundedShapes(Point[] p){
         super(p);
         if(!testPoints(p)){
-            System.out.println("Wrong points! ");
+            throw new WrongPointsExceptions("Fail");
         }
     }
     public ConcretRoundedShapes setSize(float size){
@@ -47,5 +48,15 @@ public class ConcretRoundedShapes extends RoundedShapes {
         }
         ConcretRoundedShapes c = new ConcretRoundedShapes(points);
         return  c;
+    }
+    @Override
+    public String draw() {
+        String rezultat = "Nameless Rounded shape: ";
+        System.out.println("Nameless Rounded shape: ");
+        for (int i = 0; i < points.length; i++) {
+            System.out.println("\nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")");
+            rezultat = rezultat + " \nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
+        }
+        return rezultat;
     }
 }
