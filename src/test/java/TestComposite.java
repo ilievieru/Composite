@@ -29,7 +29,7 @@ public class TestComposite {
         square.addShape(recrangle);
 
         square.draw();
-        System.out.println("Composite");
+        System.out.println("composite");
         String actual = square.drawSubShapes();
         Assert.assertEquals(expected,actual);
 
