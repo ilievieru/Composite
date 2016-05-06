@@ -6,14 +6,18 @@ More precise this method checks if the length si different from width.
 */
 package poligons;
 import Exceptions.WrongPointsExceptions;
+import Visitor.Visitor;
 import base.Point;
 
 /**
  * Created by V3790149 on 4/26/2016.
  */
-public class Rectangle extends Poligon {
+public class Rectangle extends Poligon implements java.io.Serializable  {
 
 
+    public Rectangle(){
+
+    }
     //length is Horizontal length and  width is vertical length
     public Rectangle(float length, float width, Point start) {
         super(start);
@@ -61,5 +65,12 @@ public class Rectangle extends Poligon {
             rezultat = rezultat + " \nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
         }
         return rezultat;
+    }
+    @Override
+    public void accept(Visitor visitor) {
+        System.out.println("serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
     }
 }

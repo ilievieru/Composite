@@ -7,13 +7,17 @@ package poligons;
 
 import Exceptions.WrongPointsExceptions;
 import Exceptions.WrongSizeExceptions;
+import Visitor.Visitor;
 import base.Point;
 
 /**
  * Created by V3790149 on 4/26/2016.
  */
-public class Triangle extends Poligon {
+public class Triangle extends Poligon implements java.io.Serializable  {
 
+    public Triangle(){
+
+    }
     public Triangle(float length, Point start) {
         super(start);
         this.name = "Triangle";
@@ -62,5 +66,12 @@ public class Triangle extends Poligon {
             rezultat = rezultat + " \nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
         }
         return rezultat;
+    }
+    @Override
+    public void accept(Visitor visitor) {
+        System.out.println("serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
     }
 }

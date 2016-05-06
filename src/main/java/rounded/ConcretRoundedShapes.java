@@ -1,8 +1,8 @@
 package rounded;
 
 import Exceptions.WrongPointsExceptions;
+import Visitor.Visitor;
 import base.Point;
-import poligons.ConcretPoligon;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
@@ -10,8 +10,11 @@ import static java.lang.Math.sin;
 /**
  * Created by V3790149 on 4/27/2016.
  */
-public class ConcretRoundedShapes extends RoundedShapes {
+public class ConcretRoundedShapes extends RoundedShapes implements java.io.Serializable {
 
+    public ConcretRoundedShapes(){
+
+    }
     public ConcretRoundedShapes(Point origin, float radius){
         super(origin,radius);
         points = new Point[38];
@@ -58,5 +61,12 @@ public class ConcretRoundedShapes extends RoundedShapes {
             rezultat = rezultat + " \nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
         }
         return rezultat;
+    }
+    @Override
+    public void accept(Visitor visitor) {
+        System.out.println("Serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
     }
 }

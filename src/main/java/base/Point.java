@@ -5,9 +5,12 @@
 * </summary>
 * */
 package base;
-public class Point {
+public class Point implements java.io.Serializable{
     float px = 0, py = 0;
 
+   public Point(){
+
+    }
     public Point(float x, float y) {
         px = x;
         py = y;

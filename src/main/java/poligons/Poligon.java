@@ -6,23 +6,41 @@
 
 package poligons;
 
+import Visitor.Visitor;
+import base.ID;
 import base.Point;
-import base.Shapes;
+import base.GenericShape;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
-public abstract class Poligon extends Shapes {
+import static base.ID.idList;
+
+public abstract class Poligon extends GenericShape implements java.io.Serializable {
     float length;
     float width;
 
+    public Poligon(){
+
+    }
     public Poligon(Point p) {
         start = new Point(p.getX(), p.getY());
         this.name = "Poligon";
-
+        Random rand = new Random();
+        this.id = rand.nextInt() + rand.nextInt() - rand.nextInt() + rand.nextInt() - rand.nextInt()/10 + rand.nextInt()*10;
+        while(!ID.testId(this.id)){
+            this.id = rand.nextInt() + rand.nextInt() - rand.nextInt() + rand.nextInt() - rand.nextInt()/10 + rand.nextInt()*10;
+        }
+        ID.addIdList(this.id);
+        //System.out.println("id"+this.id);
     }
 
     public Poligon(Point[] p) {
+        Random rand = new Random();
+        this.id = rand.nextInt() + rand.nextInt() - rand.nextInt() + rand.nextInt() - rand.nextInt()/10 + rand.nextInt()*10;
+        while(!ID.testId(this.id)){
+            this.id = rand.nextInt() + rand.nextInt() - rand.nextInt() + rand.nextInt() - rand.nextInt()/10 + rand.nextInt()*10;
+        }
+        ID.addIdList(this.id);
         points = p;
         start = points[0];
         this.name = "Poligon";
@@ -55,4 +73,13 @@ public abstract class Poligon extends Shapes {
     public void setWidth(float width) {
         this.width = width;
     }
+    @Override
+    public void accept(Visitor visitor) {
+        System.out.println("serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
+    }
+
+
 }

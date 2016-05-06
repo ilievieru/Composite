@@ -7,15 +7,18 @@ Also I have a test points method, override for this specific polygon, witch chec
 * */
 package poligons;
 import Exceptions.WrongPointsExceptions;
+import Visitor.Visitor;
 import base.Point;
-import base.Shapes;
 
 /**
  * Created by V3790149 on 4/26/2016.
  */
-public class Quarter extends Poligon {
+public class Square extends Poligon implements java.io.Serializable {
 
-    public Quarter(float length, Point start) {
+    public Square(){
+
+    }
+    public Square(float length, Point start) {
         super(start);
         this.name = "Square";
         this.length = length;
@@ -28,7 +31,7 @@ public class Quarter extends Poligon {
 
     }
 
-    public Quarter(Point[] p) {
+    public Square(Point[] p) {
         super(p);
         this.name = "Square";
         if (!testPoints(points))
@@ -48,13 +51,13 @@ public class Quarter extends Poligon {
         return true;
     }
 
-    public Quarter setSize(float size){
+    public Square setSize(float size){
         if(size>0){
             this.length = size;
             this.width = size;
         }else
             System.out.println("Wrong size! ");
-        Quarter q = new Quarter(size,start);
+        Square q = new Square(size,start);
         return  q;
     }
     @Override
@@ -67,5 +70,11 @@ public class Quarter extends Poligon {
         }
         return rezultat;
     }
-
+    @Override
+    public void accept(Visitor visitor) {
+        System.out.println("Serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
+    }
 }

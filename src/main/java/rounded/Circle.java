@@ -5,6 +5,7 @@ The test method for points is the standard one defined in RoundedShapes abstract
 package rounded;
 
 import Exceptions.WrongPointsExceptions;
+import Visitor.Visitor;
 import base.Point;
 
 import static java.lang.Math.cos;
@@ -13,8 +14,11 @@ import static java.lang.Math.sin;
 /**
  * Created by V3790149 on 4/26/2016.
  */
-public class Circle extends RoundedShapes {
+public class Circle extends RoundedShapes implements java.io.Serializable  {
 
+    public Circle(){
+
+    }
     public Circle(Point origin, float radius){
         super(origin,radius);
         this.name = "Circle";
@@ -51,5 +55,12 @@ public class Circle extends RoundedShapes {
             rezultat = rezultat + "\nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
         }
         return rezultat;
+    }
+    @Override
+    public void accept(Visitor visitor) {
+        System.out.println("serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
     }
 }

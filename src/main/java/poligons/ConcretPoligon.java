@@ -5,13 +5,14 @@ This class is a concrete implementation of polygons. This class creates any type
 </summary>*/
 package poligons;
 import Exceptions.WrongPointsExceptions;
+import Visitor.Visitor;
 import base.Point;
 import java.util.Random;
 
 /**
  * Created by V3790149 on 4/26/2016.
  */
-public class ConcretPoligon extends Poligon {
+public class ConcretPoligon extends Poligon implements java.io.Serializable  {
     //this creates a standard poligon starting from a start point
     public ConcretPoligon(Point p, int numberOfPoints){
         super(p);
@@ -71,5 +72,12 @@ public class ConcretPoligon extends Poligon {
             rezultat = rezultat + "\nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
         }
         return rezultat;
+    }
+    @Override
+    public void accept(Visitor visitor) {
+        System.out.println("serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
     }
 }

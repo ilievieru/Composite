@@ -4,29 +4,32 @@
         a draw method and a show one to display the points
 //</summary>*/
 package base;
+
+import Visitor.Visitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Shapes implements Shape{
-    List<Shapes> shapeList = new ArrayList<Shapes>();
-    public String name = "shape";
+public abstract class GenericShape implements Shape, java.io.Serializable {
+    public List<GenericShape> shapeList = new ArrayList<GenericShape>();
+    public String name = "Shape";
     public Point start;//This is the start point witch all the shapes have. It is the poit from where i start drawing
-    public  Point[] points = null;
+    public Point[] points = null;
+    public int id;
+
     public Point[] getPoints() {
         return points;
     }
-
-    ;
 
     public String drawSubShapes() {
         String rezultat = "";
         if (shapeList.isEmpty())
             rezultat = rezultat + this.draw();
         else {
-            System.out.println("SubShape of "+this.getName());
-            for (Shapes s : shapeList) {
+            System.out.println("SubShape of " + this.getName());
+            for (GenericShape s : shapeList) {
                 System.out.println("The SubShape is " + s.getName());
-                rezultat = rezultat  +  s.drawSubShapes();
+                rezultat = rezultat + s.drawSubShapes();
             }
             rezultat = rezultat + this.draw();
         }
@@ -52,16 +55,26 @@ public abstract class Shapes implements Shape{
     }
 
 
-    public void addShape(Shapes shape) {
+    public void addShape(GenericShape shape) {
         shapeList.add(shape);
     }
 
-    public void removeShape(Shapes shape) {
+    public void removeShape(GenericShape shape) {
         shapeList.remove(shape);
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public void accept(Visitor visitor) {
+        System.out.println("serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
+    }
 }

@@ -1,8 +1,7 @@
 import base.Point;
-import base.Shapes;
 import org.junit.Assert;
 import org.junit.Test;
-import poligons.Quarter;
+import poligons.Square;
 import poligons.Rectangle;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public class TestShapeList {
     @Test
     public void testShapeList() {
         Point startPoint = new Point(1, 1);
-        Quarter square = new Quarter(4, startPoint);
+        Square square = new Square(4, startPoint);
         Rectangle rectangle = new Rectangle(10, 4, startPoint);
         square.addShape(rectangle);
         List shape;
@@ -24,7 +23,7 @@ public class TestShapeList {
     @Test
     public void testStartPoint(){
         Point startPoint = new Point(1, 1);
-        Quarter square = new Quarter(4, startPoint);
+        Square square = new Square(4, startPoint);
         Point actual = square.getStart();
         Assert.assertTrue(startPoint.getX()== actual.getX());
         Assert.assertTrue(startPoint.getY()== actual.getY());

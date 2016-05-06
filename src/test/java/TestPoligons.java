@@ -8,8 +8,6 @@ import base.Point;
 import org.junit.Assert;
 import org.junit.Test;
 import poligons.*;
-import rounded.Circle;
-import rounded.Ellipse;
 
 /**
  * Created by V3790149 on 4/26/2016.
@@ -58,19 +56,19 @@ public class TestPoligons {
         Assert.assertTrue(startPoint.getX() == 1);
         Assert.assertTrue(startPoint.getY() == 1);
 
-        Quarter quarter = new Quarter(3, startPoint);
-        Assert.assertTrue(quarter.getLength() == quarter.getWidth());
-        Assert.assertNotNull(quarter);
-        quarter.draw();
+        Square square = new Square(3, startPoint);
+        Assert.assertTrue(square.getLength() == square.getWidth());
+        Assert.assertNotNull(square);
+        square.draw();
         System.out.println("After resize");
-        quarter = quarter.setSize(8);
-        quarter.draw();
+        square = square.setSize(8);
+        square.draw();
         Point p[] = new Point[4];
         p[0] = new Point(1, 1);
         p[1] = new Point(4, 1);
         p[2] = new Point(4, 2);
         p[3] = new Point(1, -2);
-        Quarter q = new Quarter(p);
+        Square q = new Square(p);
         Assert.assertEquals(4, q.getPoints().length);
     }
 

@@ -4,7 +4,9 @@ The test method for points is the standard one defined in RoundedShapes abstract
 * */
 package rounded;
 import Exceptions.WrongPointsExceptions;
+import Visitor.Visitor;
 import base.Point;
+import org.w3c.dom.Element;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
@@ -12,8 +14,11 @@ import static java.lang.Math.sin;
 /**
  * Created by V3790149 on 4/26/2016.
  */
-public class Ellipse extends RoundedShapes {
+public class Ellipse extends RoundedShapes implements java.io.Serializable {
 
+    public Ellipse(){
+
+    }
     public Ellipse(Point origin, float radius, float radius1){
         super(origin,radius);
         this.name = "Ellipse";
@@ -51,5 +56,12 @@ public class Ellipse extends RoundedShapes {
             rezultat = rezultat + " \nPunctul " + i + "(" + points[i].getX() + ", " + points[i].getY() + ")";
         }
         return rezultat;
+    }
+    @Override
+    public void accept(Visitor visitor) {
+        System.out.println("serializare:\n");
+        visitor.serialize(this);
+        System.out.println("Deserializare:\n ");
+        visitor.deserialize(this);
     }
 }
